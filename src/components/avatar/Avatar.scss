@@ -1,0 +1,11 @@
+.avatar {
+    display: flex;
+
+    flex-direction: row;
+
+    .image-wrapper {
+        img {
+            height: 50px;
+        }
+    }
+}
