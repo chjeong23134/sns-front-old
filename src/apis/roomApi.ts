@@ -1,33 +1,22 @@
-import axios from "axios"
+import Axios, {AxiosInstance} from "axios";
 
-interface RoomType {
-	id: number;
-	createUserId: number;
-	name: string;
-	isDeleted: string;
-	createDate: Date;
-	updateDate: Date;
+export interface RoomType {
+    readonly id: number;
+    readonly createUserId: number;
+	readonly name: string;
+    readonly isDeleted: string;
+    readonly createDate: Date;
+    readonly updateDate: Date;
 }
 
-interface ResponseType {
-	data: RoomType[];
-	status: string;
-	message: string;
+const axios: AxiosInstance = Axios.create({
+    baseURL: "http://localhost:8080/room",
+});
+
+export async function list(userId: number): Promise<RoomType[]> {
+	return await axios.get("/list/" + userId).then(res => res.data);
 }
 
-const ip = "http://localhost:8080/room"
-
-function list(userId: number): Promise<ResponseType> {
-	return axios({
-		url: ip + "/list/" + userId
-	}).then(res => res.data);
-}
-
-function image(id: number): string {
-	return ip + "/image/" + id;
-}
-
-export const roomApi = {
-	list,
-	image
+export function image(id: number): string {
+	return "http://localhost:8080/room/image/" + id;
 }

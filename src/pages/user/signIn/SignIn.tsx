@@ -1,9 +1,8 @@
 import "./SignIn.scss";
 
 import {useState} from "react";
-import {userApi} from "../../../apis/userApi";
-import {routerEnum} from "../../../enum/routerEnum";
 import {useNavigate} from "react-router-dom";
+import {signIn} from "../../../apis/userApi";
 
 export default function SignIn() {
     const history = useNavigate();
@@ -31,8 +30,16 @@ export default function SignIn() {
             return;
         }
 
-        userApi.signIn(email, password).then(() => {
-            history("../" + routerEnum.MAIN + "/" + routerEnum.LIST);
+        signIn(email, password).then((res) => {
+            console.log(res);
+            if (res.id == null) {
+                setEmailError("정보가 올바르지 않습니다.");
+                setPasswordError("정보가 올바르지 않습니다.");
+
+                return;
+            }
+
+            history("../main/list");
 
             return;
         });
@@ -64,12 +71,12 @@ export default function SignIn() {
                 </div>
 
                 <div className="button-wrapper">
-                    <button className="sign-in-button" onChange={signInHandler}>
+                    <button className="sign-in-button" onClick={signInHandler}>
                         Login
                     </button>
                     <button
                         className="sign-up-button"
-                        onClick={() => history("../" + routerEnum.SIGNUP)}
+                        onClick={() => history("../sign-up")}
                     >
                         Signup
                     </button>

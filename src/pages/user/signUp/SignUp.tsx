@@ -1,9 +1,12 @@
 import "./SignUp.scss";
 
 import {useState} from "react";
-import {userApi} from "../../../apis/userApi";
+import {emailCheck, signUp} from "../../../apis/userApi";
+import {useNavigate} from "react-router-dom";
 
 export default function SignUp() {
+    const history = useNavigate();
+
     const [name, setName] = useState<string>("");
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
@@ -35,14 +38,16 @@ export default function SignUp() {
             return;
         }
 
-        userApi.emailCheck(email).then((res) => {
-            if (res.data !== null) {
+        emailCheck(email).then((res) => {
+            if (res !== null) {
                 setEmailError("이미 가입된 이메일입니다.");
 
                 return;
             }
 
-            userApi.signUp(email, password, name);
+            signUp(email, password, name).then((res) => {
+                history("../main/list");
+            });
         });
     }
 

@@ -2,28 +2,17 @@ import "./TopicList.scss";
 
 import { useEffect, useState } from "react";
 
-import { topicApi } from "../../apis/topicApi";
+import { list, TopicType } from "../../apis/topicApi";
 
 import TopicListItem from "../TopicListItem/TopicListItem";
-
-interface TopicType {
-    id: number;
-    roomId: number;
-    createUserId: number;
-    title: string;
-    content: string;
-    isDeleted: string;
-    createDate: Date;
-    updateDate: Date;
-}
 
 export default function TopicList() {
 	const [ topics, setTopics ] = useState<TopicType[]>([]);
 
 	useEffect(() => {
-		topicApi.list(1)
+		list(1)
 			.then(res => {
-				setTopics(res.data);
+				setTopics(res);
 			});
 	}, []);
 

@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
-import { userApi } from "../../apis/userApi";
 import "./Avatar.scss";
+
+import {useEffect, useState} from "react";
+import {detail, image} from "../../apis/userApi";
 
 interface UserType {
     id: number;
@@ -13,28 +14,23 @@ interface UserType {
 }
 
 interface PropType {
-	id: number
+    id: number;
 }
 
 export default function Avatar(props: PropType) {
-	const [ user, setUser ] = useState<UserType>();
+    const [user, setUser] = useState<UserType>();
 
-	useEffect(() => {
-		userApi.detail(props.id)
-			.then(res => {
-				setUser(res.data);
-			})
-	}, []);
+    useEffect(() => {
+        detail(props.id).then((res) => setUser(res));
+    }, []);
 
-	return (
-		<div className="avatar">
-			<div className="image-wrapper">
-				<img src={userApi.image(props.id)} />
-			</div>
+    return (
+        <div className="avatar">
+            <div className="image-wrapper">
+                <img src={image(props.id)} />
+            </div>
 
-			<div className="name-wrapper">
-				{user?.name}
-			</div>
-		</div>
-	);
+            <div className="name-wrapper">{user?.name}</div>
+        </div>
+    );
 }

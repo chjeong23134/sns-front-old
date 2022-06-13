@@ -1,5 +1,6 @@
-import { roomApi } from "../../apis/roomApi";
 import "./RoomItem.scss";
+
+import { image } from "../../apis/roomApi";
 
 interface PropType {
 	id: number;
@@ -14,7 +15,7 @@ export default function RoomItem(props: PropType) {
 	return (
 		<div className="room-item">
 			<div className="item-board">
-				<img className="image" src={ roomApi.image(props.id) } />
+				<img className="image" src={ image(props.id) } />
 				
 				<div className="content">{ props.name }</div>
 			</div>
