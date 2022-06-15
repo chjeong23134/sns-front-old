@@ -13,10 +13,10 @@ const axios: AxiosInstance = Axios.create({
     baseURL: "http://localhost:8080/room",
 });
 
-export async function list(userId: number): Promise<RoomType[]> {
+export async function roomList(userId: number): Promise<RoomType[]> {
 	return await axios.get("/list/" + userId).then(res => res.data);
 }
 
-export function image(id: number): string {
+export function roomImage(id: number): string {
 	return "http://localhost:8080/room/image/" + id;
 }

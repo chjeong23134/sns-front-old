@@ -1,10 +1,10 @@
-.topic-list-item {
+.topic-item {
     margin: 10px;
-    border: 1px solid #d9d9d9;
-    border-radius: 10px;
 
-    .item-board {
+    .topic-board {
         width: 750px;
+        border: 1px solid #d9d9d9;
+        border-radius: 10px;
 
         flex-direction: column;
 

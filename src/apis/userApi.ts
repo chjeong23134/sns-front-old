@@ -44,10 +44,10 @@ export async function emailCheck(email: string): Promise<UserType> {
     return await axios.get("/email-check/" + email).then((res) => res.data);
 }
 
-export async function detail(id: number): Promise<UserType> {
+export async function userDetail(id: number): Promise<UserType> {
     return axios.get("/detail/" + id).then((res) => res.data);
 }
 
-export function image(userId: number): string {
+export function userImage(userId: number): string {
     return "http://localhost:8080/user/image/" + userId;
 }

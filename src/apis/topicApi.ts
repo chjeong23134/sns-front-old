@@ -15,7 +15,7 @@ const axios: AxiosInstance = Axios.create({
     baseURL: "http://localhost:8080/topic",
 });
 
-export async function write(
+export async function topicWrite(
     roomId: number,
     createUserId: number,
     title: string,
@@ -31,6 +31,6 @@ export async function write(
         .then((res) => res.data);
 }
 
-export async function list(roomId: number): Promise<TopicType[]> {
+export async function topicList(roomId: number): Promise<TopicType[]> {
     return await axios.get("/list/" + roomId).then((res) => res.data);
 }

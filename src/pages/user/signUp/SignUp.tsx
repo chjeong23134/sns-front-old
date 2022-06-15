@@ -45,7 +45,7 @@ export default function SignUp() {
                 return;
             }
 
-            signUp(email, password, name).then((res) => {
+            signUp(email, password, name).then(() => {
                 history("../main/list");
             });
         });

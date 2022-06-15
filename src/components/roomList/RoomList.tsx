@@ -2,7 +2,7 @@ import "./RoomList.scss";
 
 import {useEffect, useState} from "react";
 
-import {list, RoomType} from "../../apis/roomApi";
+import {roomList, RoomType} from "../../apis/roomApi";
 
 import RoomItem from "../roomItem/RoomItem";
 
@@ -10,7 +10,7 @@ export default function RoomList() {
     const [rooms, setRooms] = useState<RoomType[]>([]);
 
     useEffect(() => {
-        list(1).then((res) => setRooms(res));
+        roomList(1).then((res) => setRooms(res));
     }, []);
 
     return (
